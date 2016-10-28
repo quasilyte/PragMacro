@@ -19,8 +19,7 @@ STRUCT(Ast) {
 
 void init_ast_module(void);
 
-//i64 eval_int(const Ast*) __attribute__((pure));
-i64 eval_int(const Ast*);
+i64 eval_int(const Ast*) ATT_PURE;
 
 Ast* ast_int(i64);
 Ast* ast_add(const Ast* lhs, const Ast* rhs);

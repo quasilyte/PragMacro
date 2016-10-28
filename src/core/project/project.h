@@ -6,3 +6,4 @@
 
 #include "core/project/typedefs.h"
 #include "core/project/langmod.h"
+#include "core/project/attrs.h"

@@ -18,4 +18,3 @@
 #define ENUM(E) \
   typedef enum E E; \
   enum E
-
