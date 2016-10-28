@@ -1,0 +1,14 @@
+http://stackoverflow.com/questions/11632219/c-preprocessor-macro-specialisation-based-on-an-argument
+
+http://stackoverflow.com/questions/3136686/is-the-c99-preprocessor-turing-complete/10526117#10526117
+
+https://github.com/AlexDenisov/ToyClangPlugin
+
+http://blog.quarkslab.com/implementing-a-custom-directive-handler-in-clang.html
+
+----
+
+use cases:
+1) code generation & templates
+2) constexpr
+3) macro generation
