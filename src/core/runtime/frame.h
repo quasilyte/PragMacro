@@ -26,7 +26,7 @@ void frame_set_float(FrameSlot, double val);
 //!}
 
 //! @brief Push new @p slot_count slots onto frame
-void frame_alloc(u32 slot_count);
+void frame_alloc(uint slot_count);
 
 //! @brief Pop last @p slot_count slots from frame
-void frame_dealloc(u32 slot_count);
+void frame_dealloc(uint slot_count);

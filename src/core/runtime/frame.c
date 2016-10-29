@@ -30,12 +30,12 @@ double frame_get_float(FrameSlot slot) {
   return ((double*)fp)[slot];
 }
 
-void frame_alloc(u32 slot_count) {
+void frame_alloc(uint slot_count) {
   fp += slot_count * SLOT_SIZE;
   assert(fp <= fp_bottom && "frame overflow");
 }
 
-void frame_dealloc(u32 slot_count) {
+void frame_dealloc(uint slot_count) {
   fp -= slot_count * SLOT_SIZE;
   assert(fp >= fp_top && "frame underflow");
 }
