@@ -1,10 +1,15 @@
 #pragma once
 
+/*!
+ * @brief Statements -- object values of Ast
+ */
+
 #include "core/project/project.h"
+#include "core/runtime/frame.h"
 
 STRUCT(Ast);
 
 STRUCT(StmtAssign) {
-  int id;
+  FrameSlot slot;
   const Ast* init;
-}
+};

@@ -4,6 +4,7 @@
  * @brief Shortcuts for function attributes
  */
 
-#define ATT_PURE __attribute__((pure))
-#define ATT_CONST __attribute__((const))
-#define ATT_HOT __attribute__((hot))
+#define $PURE __attribute__((pure))
+#define $CONST __attribute__((const))
+#define $HOT __attribute__((hot))
+#define $UNUSED __attribute__((unused))
