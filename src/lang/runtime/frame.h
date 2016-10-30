@@ -4,11 +4,34 @@
 
 typedef byte FrameSlot;
 
-//! @brief Prepare frames; allocate @p byte_size bytes
-void frame_module_init(u64 byte_size);
+//! @brief Storage unit for local (auto) variables
+STRUCT(Frame) {
+  byte* top;
+  byte* bottom;
+  byte* ptr;
+};
+
+//! @brief Prepare frame; allocate @p byte_size bytes
+void frame_init(Frame*, u64 byte_size);
 
 /*!
- * @defgroup frame_get_<T>
+ * @brief Return current frame; replace it with given frame
+ *
+ * Replaces frame with a new one.
+ * Old frame returned and can be installed again later.
+ *
+ * Once installed, frame contents are destructured,
+ * so even if you modify given frame from outside,
+ * changes will not affect frame module state.
+ * Note however, that after exchange called again,
+ * returned frame pointer will reflect mutated state.
+ *
+ * @note Initially returns NULL, because there is no default frame
+ */
+Frame* frame_exchange(Frame*);
+
+/*!
+ * @defgroup frame_get<T>
  * @brief Fetch frame variable
  */
 //!{
@@ -17,7 +40,7 @@ $float frame_getf(FrameSlot);
 //!}
 
 /*!
- * @defgroup frame_set_<T>
+ * @defgroup frame_set<T>
  * @brief Store frame variable
  */
 //!{

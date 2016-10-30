@@ -6,12 +6,24 @@ static byte* fp_top;
 static byte* fp_bottom;
 static byte* fp;
 
+static Frame* frame = NULL;
+
 static const int SLOT_SIZE = sizeof(void*);
 
-void frame_module_init(u64 byte_size) {
-  fp_top = malloc(byte_size);
-  fp_bottom = fp_top + byte_size;
-  fp = fp_top;
+void frame_init(Frame* f, u64 byte_size) {
+  f->top = malloc(byte_size);
+  f->bottom = f->top + byte_size;
+  f->ptr = f->top;
+}
+
+Frame* frame_exchange(Frame* new_frame) {
+  fp_top = new_frame->top;
+  fp_bottom = new_frame->bottom;
+  fp = new_frame->ptr;
+
+  Frame* old_frame = frame;
+  frame = new_frame;
+  return old_frame;
 }
 
 void frame_seti(FrameSlot slot, $int val) {
