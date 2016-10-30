@@ -54,5 +54,5 @@ static_assert(
  * @section Lang runtime types
  */
 
-typedef i64 $int;
-typedef double $float;
+typedef i64 $Int;
+typedef double $Float;

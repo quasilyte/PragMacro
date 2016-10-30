@@ -15,6 +15,18 @@ void handle_addl(FrameSlot dst, FrameSlot src) {
   frame_seti(dst, frame_geti(dst) + frame_geti(src));
 }
 
+void handle_sub1(FrameSlot dst) {
+  frame_seti(dst, frame_geti(dst) - 1);
+}
+
+void handle_subi(FrameSlot dst, i32 val) {
+  frame_seti(dst, frame_geti(dst) - val);
+}
+
+void handle_subl(FrameSlot dst, FrameSlot src) {
+  frame_seti(dst, frame_geti(dst) - frame_geti(src));
+}
+
 void handle_mov0(FrameSlot dst) {
   frame_seti(dst, 0);
 }
@@ -56,6 +68,10 @@ void eval(void) {
     &&op_addi,
     &&op_addl,
 
+    &&op_sub1,
+    &&op_subi,
+    &&op_subl,
+
     &&op_mov0,
     &&op_movl,
     &&op_movi,
@@ -69,6 +85,9 @@ void eval(void) {
   HANDLER1(add1, byte)
   HANDLER2(addi, byte, i32)
   HANDLER2(addl, byte, byte)
+  HANDLER1(sub1, byte)
+  HANDLER2(subi, byte, i32)
+  HANDLER2(subl, byte, byte)
   HANDLER1(mov0, byte)
   HANDLER2(movi, byte, i64)
   HANDLER2(movl, byte, byte)

@@ -30,20 +30,20 @@ Frame* frame_exchange(Frame* new_frame) {
   return old_frame;
 }
 
-void frame_seti(FrameSlot slot, $int val) {
-  (($int*)frame_ptr)[slot] = val;
+void frame_seti(FrameSlot slot, $Int val) {
+  (($Int*)frame_ptr)[slot] = val;
 }
 
-void frame_setf(FrameSlot slot, $float val) {
-  (($float*)frame_ptr)[slot] = val;
+void frame_setf(FrameSlot slot, $Float val) {
+  (($Float*)frame_ptr)[slot] = val;
 }
 
-$int frame_geti(FrameSlot slot) {
-  return (($int*)frame_ptr)[slot];
+$Int frame_geti(FrameSlot slot) {
+  return (($Int*)frame_ptr)[slot];
 }
 
-$float frame_getf(FrameSlot slot) {
-  return (($float*)frame_ptr)[slot];
+$Float frame_getf(FrameSlot slot) {
+  return (($Float*)frame_ptr)[slot];
 }
 
 void frame_alloc(uint slot_count) {

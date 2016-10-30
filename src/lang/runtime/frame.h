@@ -30,8 +30,8 @@ Frame* frame_exchange(Frame*);
  * @brief Fetch frame variable
  */
 //!{
-$int frame_geti(FrameSlot);
-$float frame_getf(FrameSlot);
+$Int frame_geti(FrameSlot);
+$Float frame_getf(FrameSlot);
 //!}
 
 /*!
@@ -39,8 +39,8 @@ $float frame_getf(FrameSlot);
  * @brief Store frame variable
  */
 //!{
-void frame_seti(FrameSlot, $int val);
-void frame_setf(FrameSlot, $float val);
+void frame_seti(FrameSlot, $Int val);
+void frame_setf(FrameSlot, $Float val);
 //!}
 
 //! @brief Push new @p slot_count slots onto frame

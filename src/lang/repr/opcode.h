@@ -16,6 +16,10 @@ ENUM(Opcode) {
   OP_ADDI, //!< local += imm32
   OP_ADDL, //!< local += local
 
+  OP_SUB1, //!< local -= 1
+  OP_SUBI, //!< local -= imm32
+  OP_SUBL, //!< local -= local
+
   OP_MOV0, //!< local = 0
   OP_MOVL, //!< local = local
   OP_MOVI, //!< local = imm64
