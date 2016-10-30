@@ -1,0 +1,37 @@
+desired optimizations:
+
+1) constant folding.
+==
+add x 10
+add x 20
+sub x 5
+=>
+add x 25
+==
+
+2) constant propagation.
+==
+mov x 10
+add y x
+=>
+add y 10
+==
+
+3) function call inline.
+==
+add5(int x):
+  add x 5
+  ret
+==
+call add5
+mov x, result
+=>
+add x 5
+==
+
+4) array access optimizations.
+* no check for tags inside for/each
+
+5) optimize int div/mod/mul
+
+6) loop optimizations
