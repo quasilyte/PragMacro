@@ -14,20 +14,20 @@ void frame_module_init(u64 byte_size) {
   fp = fp_top;
 }
 
-void frame_set_int(FrameSlot slot, i64 val) {
-  ((i64*)fp)[slot] = val;
+void frame_set_int(FrameSlot slot, $int val) {
+  (($int*)fp)[slot] = val;
 }
 
-void frame_set_float(FrameSlot slot, double val) {
-  ((double*)fp)[slot] = val;
+void frame_set_float(FrameSlot slot, $float val) {
+  (($float*)fp)[slot] = val;
 }
 
 $int frame_get_int(FrameSlot slot) {
-  return ((i64*)fp)[slot];
+  return (($int*)fp)[slot];
 }
 
-double frame_get_float(FrameSlot slot) {
-  return ((double*)fp)[slot];
+$float frame_get_float(FrameSlot slot) {
+  return (($float*)fp)[slot];
 }
 
 void frame_alloc(uint slot_count) {
