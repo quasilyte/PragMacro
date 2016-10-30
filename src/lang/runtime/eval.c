@@ -1,7 +1,7 @@
 #include "lang/runtime/eval.h"
 
-#include "lang/runtime/env.h"
 #include "lang/runtime/frame.h"
+#include "lang/runtime/pc.h"
 
 void handle_add1(FrameSlot dst) {
   frame_seti(dst, frame_geti(dst) + 1);
@@ -27,33 +27,25 @@ void handle_movl(FrameSlot dst, FrameSlot src) {
   frame_seti(dst, frame_geti(src));
 }
 
-void handle_jnz(Env* env, FrameSlot slot, i16 offset) {
+void handle_jnz(FrameSlot slot, i16 offset) {
   if (frame_geti(slot) != 0) {
-    env->pc += offset;
+    pc_jump(offset);
   }
 }
 
-void eval(Env* env) {
-  #define NEXT_OP goto *handlers[*env->pc++]
-  #define HANDLER(NAME) op_##NAME: handle_##NAME(env); NEXT_OP
+void eval(void) {
+  #define NEXT_OP goto *handlers[pc_fetch_byte()]
   #define HANDLER1(NAME, T1) \
     op_##NAME: { \
-      T1 a = pc_##T1(env); \
+      T1 a = pc_fetch_##T1(); \
       handle_##NAME(a); \
       NEXT_OP; \
     }
   #define HANDLER2(NAME, T1, T2) \
     op_##NAME: { \
-      T1 a = pc_##T1(env); \
-      T2 b = pc_##T2(env); \
+      T1 a = pc_fetch_##T1(); \
+      T2 b = pc_fetch_##T2(); \
       handle_##NAME(a, b); \
-      NEXT_OP; \
-    }
-  #define HANDLER2E(NAME, A, B) \
-    op_##NAME: { \
-      A a = pc_##A(env); \
-      B b = pc_##B(env); \
-      handle_##NAME(env, a, b); \
       NEXT_OP; \
     }
 
@@ -80,5 +72,5 @@ void eval(Env* env) {
   HANDLER1(mov0, byte)
   HANDLER2(movi, byte, i64)
   HANDLER2(movl, byte, byte)
-  HANDLER2E(jnz, byte, i16)
+  HANDLER2(jnz, byte, i16)
 }

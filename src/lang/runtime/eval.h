@@ -2,6 +2,5 @@
 
 #include "project/project.h"
 
-STRUCT(Env);
-
-void eval(Env*);
+//! @brief Evaluate using current environment (PC, frame, ...)
+void eval(void);

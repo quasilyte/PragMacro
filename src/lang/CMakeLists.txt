@@ -4,7 +4,7 @@ set(
   src
   runtime/frame.c
   runtime/eval.c
-  runtime/env.c
+  runtime/pc.c
 )
 
 add_library(lang STATIC ${src})

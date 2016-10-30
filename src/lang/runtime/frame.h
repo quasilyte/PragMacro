@@ -20,12 +20,7 @@ void frame_init(Frame*, u64 byte_size);
  * Replaces frame with a new one.
  * Old frame returned and can be installed again later.
  *
- * Once installed, frame contents are destructured,
- * so even if you modify given frame from outside,
- * changes will not affect frame module state.
- * Note however, that after exchange called again,
- * returned frame pointer will reflect mutated state.
- *
+ * @warning Do not modify passed Frame until you get it back (next exchange call)
  * @note Initially returns NULL, because there is no default frame
  */
 Frame* frame_exchange(Frame*);
