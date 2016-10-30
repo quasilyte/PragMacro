@@ -1,6 +1,6 @@
 #pragma once
 
-#include "core/project/project.h"
+#include "project/project.h"
 
 typedef i32 FrameSlot;
 
@@ -12,8 +12,8 @@ void frame_module_init(u64 byte_size);
  * @brief Fetch frame variable
  */
 //!{
-i64 frame_get_int(FrameSlot);
-double frame_get_float(FrameSlot);
+$int frame_get_int(FrameSlot);
+$float frame_get_float(FrameSlot);
 //!}
 
 /*!
@@ -21,8 +21,8 @@ double frame_get_float(FrameSlot);
  * @brief Store frame variable
  */
 //!{
-void frame_set_int(FrameSlot, i64 val);
-void frame_set_float(FrameSlot, double val);
+void frame_set_int(FrameSlot, $int val);
+void frame_set_float(FrameSlot, $float val);
 //!}
 
 //! @brief Push new @p slot_count slots onto frame

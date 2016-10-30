@@ -7,6 +7,10 @@
 #include "cstd/stdint.h"
 #include "cstd/assert.h"
 
+/*!
+ * @section Implementation types
+ */
+
 typedef int64_t i64;
 typedef int32_t i32;
 typedef int16_t i16;
@@ -45,3 +49,10 @@ static_assert(
   sizeof(void*) == 8,
   "pointer type sizes"
 );
+
+/*!
+ * @section Lang runtime types
+ */
+
+typedef i64 $int;
+typedef double $float;

@@ -1,4 +1,4 @@
-#include "core/runtime/frame.h"
+#include "lang/runtime/frame.h"
 
 #include "cstd/stdlib.h"
 
@@ -22,7 +22,7 @@ void frame_set_float(FrameSlot slot, double val) {
   ((double*)fp)[slot] = val;
 }
 
-i64 frame_get_int(FrameSlot slot) {
+$int frame_get_int(FrameSlot slot) {
   return ((i64*)fp)[slot];
 }
 
