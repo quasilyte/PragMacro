@@ -5,42 +5,42 @@
 
 void handle_add1(Env* env) {
   FrameSlot dst = pc_byte(env);
-  frame_set_int(dst, frame_get_int(dst) + 1);
+  frame_seti(dst, frame_geti(dst) + 1);
 }
 
 void handle_addi(Env* env) {
   FrameSlot dst = pc_byte(env);
   i32 val = pc_i32(env);
-  frame_set_int(dst, frame_get_int(dst) + val);
+  frame_seti(dst, frame_geti(dst) + val);
 }
 
 void handle_addl(Env* env) {
   FrameSlot dst = pc_byte(env);
   FrameSlot src = pc_byte(env);
-  frame_set_int(dst, frame_get_int(dst) + frame_get_int(src));
+  frame_seti(dst, frame_geti(dst) + frame_geti(src));
 }
 
 void handle_mov0(Env* env) {
   FrameSlot dst = pc_byte(env);
-  frame_set_int(dst, 0);
+  frame_seti(dst, 0);
 }
 
 void handle_movi(Env* env) {
   FrameSlot dst = pc_byte(env);
   i64 val = pc_i64(env);
-  frame_set_int(dst, val);
+  frame_seti(dst, val);
 }
 
 void handle_movl(Env* env) {
   FrameSlot dst = pc_byte(env);
   FrameSlot src = pc_byte(env);
-  frame_set_int(dst, frame_get_int(src));
+  frame_seti(dst, frame_geti(src));
 }
 
 void handle_jnz(Env* env) {
   FrameSlot slot = pc_byte(env);
   i16 offset = pc_i16(env);
-  if (frame_get_int(slot) != 0) {
+  if (frame_geti(slot) != 0) {
     env->pc += offset;
   }
 }
