@@ -21,7 +21,21 @@ struct Token {/* Opaque */};
  */
 
 //! @brief Mono type elems; indexed by {int} keys; Ordered & contiguous
-typedef const char* Array;
+typedef void* Array;
+
+/*!
+ * @defgroup <T>Array
+ * @brief Type specialized arrays; fully compatible with untyped Array
+ *
+ * Advantages of using specialized arrays:
+ * 1) They make API more specific and clear
+ * 2) Its possible to use native indexing with them
+ */
+//!{
+typedef int* IntArray;
+typedef float* FloatArray;
+typedef char* CharArray;
+//!}
 
 //! @brief Array length
 int len(Array);
