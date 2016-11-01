@@ -4,15 +4,16 @@
 
 typedef byte FrameSlot;
 
-//! @brief Storage unit for local (auto) variables
-STRUCT(Frame) {
-  byte* top;
-  byte* bottom;
-  byte* ptr;
-};
+STRUCT($Object);
 
-//! @brief Prepare frame; allocate @p byte_size bytes
-void frame_init(Frame*, u64 byte_size);
+//! @brief Storage unit for local (auto) variables
+STRUCT(Frame);
+
+//! @brief Frame constructor
+Frame* new_frame(u64 size);
+
+//! @brief Frame destructor
+void delete_frame(Frame*);
 
 /*!
  * @brief Return current frame; replace it with given frame
@@ -20,7 +21,6 @@ void frame_init(Frame*, u64 byte_size);
  * Replaces frame with a new one.
  * Old frame returned and can be installed again later.
  *
- * @warning Do not modify passed Frame until you get it back (next exchange call)
  * @note Initially returns NULL, because there is no default frame
  */
 Frame* frame_exchange(Frame*);
@@ -32,6 +32,7 @@ Frame* frame_exchange(Frame*);
 //!{
 $Int frame_geti(FrameSlot);
 $Float frame_getf(FrameSlot);
+$Object* frame_geto(FrameSlot);
 //!}
 
 /*!
@@ -44,7 +45,7 @@ void frame_setf(FrameSlot, $Float val);
 //!}
 
 //! @brief Push new @p slot_count slots onto frame
-void frame_alloc(uint slot_count);
+void frame_push(uint slot_count);
 
 //! @brief Pop last @p slot_count slots from frame
-void frame_dealloc(uint slot_count);
+void frame_pop(uint slot_count);

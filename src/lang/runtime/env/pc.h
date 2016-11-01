@@ -2,14 +2,16 @@
 
 #include "project/project.h"
 
-//! @brief Lang program counter; it controls execution
-STRUCT(ProgramCounter) {
-  const byte* ptr;
-};
+//! @brief Program counter which controls execution
+STRUCT(ProgramCounter);
 
-/*!
- * @see frame_exchange; this function has same notes and warnings
- */
+//! @brief ProgramCounter constructor
+ProgramCounter* new_pc(const byte* code);
+
+//! @brief ProgramCounter destructor
+void delete_pc(ProgramCounter*);
+
+//! @see frame_exchange; this function has same notes and warnings
 ProgramCounter* pc_excange(ProgramCounter*);
 
 //! @brief Perform an unconditional jump
