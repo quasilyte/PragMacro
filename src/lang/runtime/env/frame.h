@@ -25,23 +25,30 @@ void delete_frame(Frame*);
  */
 Frame* frame_exchange(Frame*);
 
+//! @brief Type generic frame_get function
+$Int frame_get(FrameSlot);
+
 /*!
  * @defgroup frame_get<T>
  * @brief Fetch frame variable
  */
 //!{
-$Int frame_geti(FrameSlot);
-$Float frame_getf(FrameSlot);
-$Object* frame_geto(FrameSlot);
+#define frame_geti(SLOT) frame_get(SLOT)
+#define frame_getf(SLOT) ($Float)frame_get(SLOT)
+#define frame_geto(SLOT) ($Object*)frame_get(SLOT)
 //!}
+
+//! @brief Type generic frame_set function
+void frame_set(FrameSlot, $Int val);
 
 /*!
  * @defgroup frame_set<T>
  * @brief Store frame variable
  */
 //!{
-void frame_seti(FrameSlot, $Int val);
-void frame_setf(FrameSlot, $Float val);
+#define frame_seti(SLOT, VAL) frame_set(SLOT, VAL)
+#define frame_setf(SLOT, VAL) frame_set(SLOT, ($Float)VAL)
+#define frame_seto(SLOT, VAL) frame_set(SLOT, ($Object*)VAL)
 //!}
 
 //! @brief Push new @p slot_count slots onto frame
