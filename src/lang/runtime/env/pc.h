@@ -26,4 +26,5 @@ byte pc_fetch_byte(void);
 i16 pc_fetch_i16(void);
 i32 pc_fetch_i32(void);
 i64 pc_fetch_i64(void);
+u32 pc_fetch_u32(void);
 //!}

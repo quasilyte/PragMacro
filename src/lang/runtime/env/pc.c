@@ -53,3 +53,4 @@ byte pc_fetch_byte(void) {
 GEN_FETCH(i16)
 GEN_FETCH(i32)
 GEN_FETCH(i64)
+GEN_FETCH(u32)
