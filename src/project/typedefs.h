@@ -56,3 +56,11 @@ static_assert(
 
 typedef i64 $Int;
 typedef double $Float;
+
+// #TODO: do something with char type and introduce $Value/$Unit type
+
+static_assert(
+  (sizeof(void*) == sizeof($Int)) &&
+  (sizeof(void*) == sizeof($Float)),
+  "equality of type sizes"
+);
