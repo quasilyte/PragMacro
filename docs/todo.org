@@ -1,8 +1,8 @@
-| Task                      | Priority |
-|---------------------------+----------|
-| Arrays & related ops      | 4/5      |
-| Missing arith ops         | 4/5      |
-| Heap manager              | 4/5      |
-| C lexer                   | 4/5      |
-| Basic optimizer prototype | 3/5      |
-| Unit tests                | 3/5      |
+| Task                      | Priority | Progress |
+|---------------------------+----------+----------|
+| Arrays & related ops      | 4/5      | 30%      |
+| Missing arith ops         | 4/5      | 10%      |
+| Heap manager              | 4/5      | 50%      |
+| C lexer                   | 4/5      | 0%       |
+| Basic optimizer prototype | 3/5      | 0%       |
+| Unit tests                | 3/5      | 0%       |
