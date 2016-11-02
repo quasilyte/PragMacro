@@ -7,29 +7,31 @@
  *
  * -- Naming hints --
  * L: local slot (1 byte)
- * I: immediate (size depends on the opcode)
- * digits: constant (requires no explicit operand, encoded in memory)
+ * B: 8 bit (byte) immediate
+ * W: 16 bit (word) immediate
+ * D: 32 bit (double word) immediate
+ * Q: 64 bit (quad word) immediate
  */
 ENUM(Opcode) {
   OP_END, //!< stop evaluation
 
-  OP_ADDI, //!< local += imm32
-  OP_ADDL, //!< local += local
+  OP_ADD_LI, //!< local += imm32
+  OP_ADD_LL, //!< local += local
 
-  OP_SUBI, //!< local -= imm32
-  OP_SUBL, //!< local -= local
+  OP_SUB_LI, //!< local -= imm32
+  OP_SUB_LL, //!< local -= local
 
-  OP_MOVL, //!< local = local
-  OP_MOVI, //!< local = imm64
+  OP_MOV_LI, //!< local = imm64
+  OP_MOV_LL, //!< local = local
 
   OP_JNZ, //!< IF (local != 0) GOTO imm16
 
-  OP_QLOADI, //!< local1 = local2[imm8]
-  OP_QLOADL, //!< local1 = local2[local3]
+  OP_QLOAD_LLI, //!< local1 = local2[imm8]
+  OP_QLOAD_LLL, //!< local1 = local2[local3]
 
-  OP_QSTOREII, //!< local[imm8] = imm64
-  OP_QSTOREIL, //!< local1[imm8] = local2
-  OP_QSTORELI, //!< local1[local2] = imm64
-  OP_QSTORELL, //!< local1[local2] = local3
+  OP_QSTORE_LII, //!< local[imm8] = imm64
+  OP_QSTORE_LIL, //!< local1[imm8] = local2
+  OP_QSTORE_LLI, //!< local1[local2] = imm64
+  OP_QSTORE_LLL, //!< local1[local2] = local3
 };
 
