@@ -8,6 +8,6 @@ STRUCT($Object) {
   $Tag tag;
 };
 
-i64 obj_qload(const $Object*, u32 idx) HOT;
+$Int obj_load(const $Object*, u32 idx) HOT;
 
-void obj_store($Object*, u32 idx, i64 val) HOT;
+void obj_store($Object*, u32 idx, $Int val) HOT;

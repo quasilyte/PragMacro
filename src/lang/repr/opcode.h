@@ -26,12 +26,12 @@ ENUM(Opcode) {
 
   OP_JNZ, //!< IF (local != 0) GOTO imm16
 
-  OP_QLOAD_LLI, //!< local1 = local2[imm8]
-  OP_QLOAD_LLL, //!< local1 = local2[local3]
+  OP_LOAD_LLI, //!< local1 = local2[imm8]
+  OP_LOAD_LLL, //!< local1 = local2[local3]
 
-  OP_QSTORE_LII, //!< local[imm8] = imm64
-  OP_QSTORE_LIL, //!< local1[imm8] = local2
-  OP_QSTORE_LLI, //!< local1[local2] = imm64
-  OP_QSTORE_LLL, //!< local1[local2] = local3
+  OP_STORE_LII, //!< local[imm8] = imm64
+  OP_STORE_LIL, //!< local1[imm8] = local2
+  OP_STORE_LLI, //!< local1[local2] = imm64
+  OP_STORE_LLL, //!< local1[local2] = local3
 };
 
