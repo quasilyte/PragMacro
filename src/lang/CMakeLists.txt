@@ -2,9 +2,12 @@ project(lang)
 
 set(
   src
-  runtime/frame.c
+  runtime/env/pc.c
+  runtime/env/frame.c
+  runtime/env/heap.c
   runtime/eval.c
-  runtime/pc.c
+  runtime/object.c
+  runtime/array.c
 )
 
 add_library(lang STATIC ${src})

@@ -4,13 +4,13 @@
 |-------+-----------------------------------------+------|
 | int   | integral literals (int32_t or int64_t)  | 5    |
 | float | floating point values (float or double) | 5.0  |
-| char  | uint8_t                                 | '5'  |
 
 Notes:
 - No direct pointer manipulations
 - All builtin structs are opaque
 - No manual memory management
 - Every variable must be explicitly initialized
+- Array container can be specialized to concrete 1-dim array
 
 Raw string literals are permitted in limited
 places, where API specifically takes const char* argument.
@@ -21,20 +21,4 @@ Example:
 str s1 = str_new("hello, world");
 int l = str_len(s);
 str s2 = str_slice(s, 0, 5);
-```
-
-Builtin containers:
-| Name     | Properties                             |
-|----------+----------------------------------------|
-| arr      | immutable; fixed size                  |
-| list     | immutable; can append new items        |
-| map      | immutable; can add new items; str keys |
-| mut_arr  | fixed size                             |
-| mut_list | can append new items                   |
-| mut_map  | can add new items; str keys            |
-
-```
-int_arr ints = {1, 2, 3};
-float_arr floats = {1.0, 2.0, 3.0};
-str s = 
 ```

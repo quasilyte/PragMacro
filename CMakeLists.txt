@@ -21,10 +21,10 @@ file(
 )
 add_custom_target(headers SOURCES ${header_files})
 
-add_subdirectory("src/core")
+add_subdirectory("src/lang")
 
 add_executable(${PROJECT_NAME} local/main.c)
 target_link_libraries(
   ${PROJECT_NAME}
-  core
+  lang
 )
