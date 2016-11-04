@@ -26,7 +26,7 @@ void delete_frame(Frame*);
 Frame* frame_exchange(Frame*);
 
 //! @brief Type generic frame_get function
-$Int frame_get(FrameSlot);
+$Int frame_get(FrameSlot) HOT;
 
 /*!
  * @defgroup frame_get<T>
@@ -39,7 +39,7 @@ $Int frame_get(FrameSlot);
 //!}
 
 //! @brief Type generic frame_set function
-void frame_set(FrameSlot, $Int val);
+void frame_set(FrameSlot, $Int val) HOT;
 
 /*!
  * @defgroup frame_set<T>
