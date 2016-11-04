@@ -30,7 +30,7 @@ $Int frame_get(FrameSlot);
 
 /*!
  * @defgroup frame_get<T>
- * @brief Fetch frame variable
+ * @brief Fetch local variable from frame memory
  */
 //!{
 #define frame_geti(SLOT) frame_get(SLOT)
@@ -43,7 +43,7 @@ void frame_set(FrameSlot, $Int val);
 
 /*!
  * @defgroup frame_set<T>
- * @brief Store frame variable
+ * @brief Store local variable in frame memory
  */
 //!{
 #define frame_seti(SLOT, VAL) frame_set(SLOT, VAL)
@@ -51,8 +51,8 @@ void frame_set(FrameSlot, $Int val);
 #define frame_seto(SLOT, VAL) frame_set(SLOT, ($Object*)VAL)
 //!}
 
-//! @brief Push new @p slot_count slots onto frame
-void frame_push(uint slot_count);
+//! @brief Preserve current frame @p count slots; go to next frame
+void frame_push(uint count);
 
-//! @brief Pop last @p slot_count slots from frame
-void frame_pop(uint slot_count);
+//! @brief Restore previous frame @p count slots; go to prev frame
+void frame_pop(uint count);
