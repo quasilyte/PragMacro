@@ -56,18 +56,6 @@ $Int frame_get(FrameSlot slot) {
   return (($Int*)frame_ptr)[slot];
 }
 
-//$Int frame_geti(FrameSlot slot) {
-//  return (($Int*)frame_ptr)[slot];
-//}
-
-//$Object* frame_geto(FrameSlot slot) {
-//  return ($Object*)frame_geti(slot);
-//}
-
-//$Float frame_getf(FrameSlot slot) {
-//  return (($Float*)frame_ptr)[slot];
-//}
-
 void frame_push(uint slot_count) {
   frame_ptr += slot_count * SLOT_SIZE;
   assert(frame_ptr <= frame_bottom && "frame overflow");
