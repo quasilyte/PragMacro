@@ -13,7 +13,7 @@
  * Q: 64 bit (quad word) immediate
  */
 ENUM(Opcode) {
-  OP_END, //!< stop evaluation
+  OP_END, //!< stop evaluation 
 
   OP_ADD_LI, //!< local += imm32
   OP_ADD_LL, //!< local += local
@@ -33,5 +33,8 @@ ENUM(Opcode) {
   OP_STORE_LIL, //!< local1[imm8] = local2
   OP_STORE_LLI, //!< local1[local2] = imm64
   OP_STORE_LLL, //!< local1[local2] = local3
+
+  OP_RET, //!< return from function
+  OP_CALL, //!< call function
 };
 
