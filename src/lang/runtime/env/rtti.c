@@ -8,6 +8,6 @@ void rtti_init(const Func* func_list) {
   rtti_fn_list = func_list;
 }
 
-const Func* rtti_get_func(u32 fn_id) {
-  return rtti_fn_list + fn_id;
+const Func* rtti_get_func(u32 func_id) {
+  return rtti_fn_list + func_id;
 }

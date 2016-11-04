@@ -5,4 +5,4 @@
 
 void rtti_init(const Func* func_list);
 
-const Func* rtti_get_func(u32 fn_id);
+const Func* rtti_get_func(u32 func_id);
