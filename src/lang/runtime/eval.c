@@ -3,8 +3,10 @@
 #include "lang/repr/opcode.h"
 #include "lang/runtime/env/frame.h"
 #include "lang/runtime/env/pc.h"
-#include "lang/runtime/array.h"
-#include "lang/runtime/object.h"
+#include "lang/runtime/env/rtti.h"
+#include "lang/runtime/types/array.h"
+#include "lang/runtime/types/object.h"
+#include "lang/symbol/func.h"
 
 void handle_add_li(FrameSlot dst, i32 val) {
   frame_seti(dst, frame_geti(dst) + val);
@@ -32,7 +34,7 @@ void handle_mov_ll(FrameSlot dst, FrameSlot src) {
 
 void handle_jnz(FrameSlot slot, i16 offset) {
   if (frame_geti(slot) != 0) {
-    pc_jump(offset);
+    pc_jump_rel(offset);
   }
 }
 
@@ -60,8 +62,23 @@ void handle_store_lll(FrameSlot dst, FrameSlot idx, FrameSlot src) {
   obj_store(frame_geto(dst), frame_geti(idx), frame_geti(src));
 }
 
+void handle_ret(void) {
+  pc_jump_abs(frame_pop());
+}
+
+void handle_call_void(u32 func_id) {
+  const Func* func = rtti_get_func(func_id);
+  frame_push(func, pc_offset());
+  pc_jump_abs(func->addr);
+}
+
 void eval(void) {
   #define NEXT_OP goto *handlers[pc_fetch_byte()]
+  #define HANDLER0(NAME) \
+    op_##NAME: { \
+      handle_##NAME(); \
+      NEXT_OP; \
+    }
   #define HANDLER1(NAME, T1) \
     op_##NAME: { \
       T1 a = pc_fetch_##T1(); \
@@ -84,7 +101,6 @@ void eval(void) {
       NEXT_OP; \
     }
 
-
   static const void* handlers[] = {
     [OP_END] = &&op_end,
 
@@ -106,6 +122,9 @@ void eval(void) {
     [OP_STORE_LIL] = &&op_store_lil,
     [OP_STORE_LLI] = &&op_store_lli,
     [OP_STORE_LLL] = &&op_store_lll,
+
+    [OP_RET] = &&op_ret,
+    [OP_CALL] = &&op_call,
   };
 
   NEXT_OP;
@@ -124,4 +143,12 @@ void eval(void) {
   HANDLER3(store_lil, byte, byte, byte)
   HANDLER3(store_lli, byte, byte, i64)
   HANDLER3(store_lll, byte, byte, byte)
+  HANDLER0(ret)
+  HANDLER1(call_void, u32)
+}
+
+void eval_func(const Func* func) {
+  frame_push(func, 0);
+  pc_jump_abs(func->addr);
+  eval();
 }

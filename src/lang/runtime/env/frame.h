@@ -5,6 +5,12 @@
 typedef byte FrameSlot;
 
 STRUCT($Object);
+STRUCT(Func);
+
+STRUCT(CallInfo) {
+  const Func* func;
+  u64 ret_addr;
+};
 
 //! @brief Initialize frame memory
 void frame_init(u64 size);
@@ -35,8 +41,9 @@ void frame_set(FrameSlot, $Int val) HOT;
 #define frame_seto(SLOT, VAL) frame_set(SLOT, ($Object*)VAL)
 //!}
 
-//! @brief Preserve current frame @p count slots; go to next frame
-void frame_push(uint count);
+//! @brief Create new activation record (winding 1 level)
+void frame_push(const Func*, u64 ret_addr);
 
-//! @brief Restore previous frame @p count slots; go to prev frame
-void frame_pop(uint count);
+//! @brief Destroy last activation record (unwinding 1 level)
+//const CallInfo* frame_pop(void);
+u64 frame_pop(void);

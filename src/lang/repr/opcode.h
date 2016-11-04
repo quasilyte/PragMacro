@@ -35,6 +35,7 @@ ENUM(Opcode) {
   OP_STORE_LLL, //!< local1[local2] = local3
 
   OP_RET, //!< return from function
-  OP_CALL, //!< call function
+  OP_CALL, //!< call functions
+  OP_CALL_VOID, //!< call function / ignore return value
 };
 
