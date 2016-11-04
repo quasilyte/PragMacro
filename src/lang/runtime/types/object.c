@@ -1,4 +1,4 @@
-#include "lang/runtime/object.h"
+#include "lang/runtime/types/object.h"
 
 i64 obj_load(const $Object* obj, u32 idx) {
   return ((i64*)obj->data)[idx];
