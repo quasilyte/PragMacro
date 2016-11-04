@@ -2,50 +2,18 @@
 
 #include "cstd/stdlib.h"
 
-STRUCT(Frame) {
-  byte* top;
-  byte* bottom;
-  byte* ptr;
-};
-
 static const int SLOT_SIZE = sizeof(void*);
 
 static byte* frame_top;
 static const byte* frame_bottom;
 static byte* frame_ptr;
 
-static Frame* current_frame = NULL;
-
-Frame* new_frame(u64 size) {
+void frame_init(u64 size) {
   assert(size >= 256 && "frame size is indecently low");
 
-  Frame* f = malloc(sizeof(Frame));
-
-  f->top = malloc(size);
-  f->bottom = f->top + size;
-  f->ptr = f->top;
-
-  return f;
-}
-
-void delete_frame(Frame* f) {
-  free(f->top);
-  free(f);
-}
-
-Frame* frame_exchange(Frame* new_f) {
-  Frame* old_f = current_frame;
-  if (old_f) {
-    old_f->ptr = frame_ptr;
-  }
-
-  frame_top = new_f->top;
-  frame_bottom = new_f->bottom;
-  frame_ptr = new_f->ptr;
-
-  current_frame = new_f;
-
-  return old_f;
+  frame_top = malloc(size);
+  frame_bottom = frame_top + size;
+  frame_ptr = frame_top;
 }
 
 void frame_set(FrameSlot slot, $Int val) {

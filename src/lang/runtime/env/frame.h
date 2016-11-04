@@ -6,24 +6,8 @@ typedef byte FrameSlot;
 
 STRUCT($Object);
 
-//! @brief Storage unit for local (auto) variables
-STRUCT(Frame);
-
-//! @brief Frame constructor
-Frame* new_frame(u64 size);
-
-//! @brief Frame destructor
-void delete_frame(Frame*);
-
-/*!
- * @brief Return current frame; replace it with given frame
- *
- * Replaces frame with a new one.
- * Old frame returned and can be installed again later.
- *
- * @note Initially returns NULL, because there is no default frame
- */
-Frame* frame_exchange(Frame*);
+//! @brief Initialize frame memory
+void frame_init(u64 size);
 
 //! @brief Type generic frame_get function
 $Int frame_get(FrameSlot) HOT;

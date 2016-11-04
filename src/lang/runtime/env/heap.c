@@ -3,50 +3,16 @@
 #include "cstd/stdlib.h"
 #include "cstd/string.h"
 
-STRUCT(Heap) {
-  byte* top;
-  byte* bottom;
-  byte* ptr;
-};
-
 static byte* heap_top;
 static const byte* heap_bottom;
 static byte* heap_ptr;
 
-static Heap* current_heap = NULL;
-
-Heap* new_heap(u64 size) {
+void heap_init(u64 size) {
   assert(size >= 256 && "heap size is indecently low");
 
-  Heap* h = malloc(sizeof(Heap));
-
-  h->top = calloc(size, 1);
-  h->bottom = h->top + size;
-  h->ptr = h->top;
-
-  return h;
-}
-
-void delete_heap(Heap* heap) {
-  free(heap->top);
-  free(heap);
-
-  heap_ptr = NULL;
-}
-
-Heap* heap_exchange(Heap* heap) {
-  Heap* old_heap = current_heap;
-  if (old_heap) {
-    old_heap->ptr = heap_ptr;
-  }
-
-  heap_top = heap->top;
-  heap_bottom = heap->bottom;
-  heap_ptr = heap->ptr;
-
-  current_heap = heap;
-
-  return old_heap;
+  heap_top = calloc(size, 1);
+  heap_bottom = heap_top + size;
+  heap_ptr = heap_top;
 }
 
 void* heap_alloc(uint size) {

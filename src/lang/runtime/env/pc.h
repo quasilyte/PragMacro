@@ -2,17 +2,8 @@
 
 #include "project/project.h"
 
-//! @brief Program counter which controls execution
-STRUCT(ProgramCounter);
-
-//! @brief ProgramCounter constructor
-ProgramCounter* new_pc(const byte* code);
-
-//! @brief ProgramCounter destructor
-void delete_pc(ProgramCounter*);
-
-//! @see frame_exchange; this function has same notes and warnings
-ProgramCounter* pc_excange(ProgramCounter*);
+//! @brief Initialize program counter
+void pc_init(const byte* code);
 
 //! @brief Perform an unconditional jump using relative offset
 void pc_jump_rel(i16 offset);
