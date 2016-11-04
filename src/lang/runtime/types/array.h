@@ -1,7 +1,7 @@
 #pragma once
 
 #include "project/project.h"
-#include "lang/runtime/tag.h"
+#include "lang/runtime/types/tag.h"
 
 STRUCT($Array) {
   void* data;
