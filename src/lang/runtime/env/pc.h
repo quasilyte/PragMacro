@@ -14,8 +14,14 @@ void delete_pc(ProgramCounter*);
 //! @see frame_exchange; this function has same notes and warnings
 ProgramCounter* pc_excange(ProgramCounter*);
 
-//! @brief Perform an unconditional jump
-void pc_jump(i16 offset);
+//! @brief Perform an unconditional jump using relative offset
+void pc_jump_rel(i16 offset);
+
+//! @brief Perform an unconditional jump using absolute offset
+void pc_jump_abs(u64 offset);
+
+//! @brief Get current ProgramCounter offset
+u64 pc_offset(void);
 
 /*!
  * @defgroup pc_fetch_<T>

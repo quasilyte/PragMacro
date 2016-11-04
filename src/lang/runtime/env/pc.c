@@ -3,9 +3,11 @@
 #include "cstd/stdlib.h"
 
 STRUCT(ProgramCounter) {
+  const byte* top;
   const byte* ptr;
 };
 
+static const byte* pc_top;
 static const byte* pc_ptr;
 
 ProgramCounter* current_pc = NULL;
@@ -13,6 +15,7 @@ ProgramCounter* current_pc = NULL;
 ProgramCounter* new_pc(const byte* code) {
   ProgramCounter* pc = malloc(sizeof(ProgramCounter));
 
+  pc->top = code;
   pc->ptr = code;
 
   return pc;
@@ -29,14 +32,23 @@ ProgramCounter* pc_excange(ProgramCounter* new_pc) {
   }
 
   pc_ptr = new_pc->ptr;
+  pc_top = new_pc->top;
 
   current_pc = new_pc;
 
   return old_pc;
 }
 
-void pc_jump(i16 offset) {
+void pc_jump_rel(i16 offset) {
   pc_ptr += offset;
+}
+
+void pc_jump_abs(u64 offset) {
+  pc_ptr = pc_top + offset;
+}
+
+u64 pc_offset(void) {
+  return pc_ptr - pc_top;
 }
 
 byte pc_fetch_byte(void) {
